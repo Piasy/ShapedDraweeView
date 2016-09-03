@@ -38,16 +38,17 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.v7.content.res.AppCompatResources;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.widget.ImageView;
 import com.facebook.drawee.drawable.ScalingUtils;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;
 import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.DraweeHolder;
 
-public class ShapedDraweeView extends ImageView {
+public class ShapedDraweeView extends AppCompatImageView {
     private static final String TAG = ShapedDraweeView.class.getSimpleName();
 
     private static final PorterDuffXfermode PORTER_DUFF_XFERMODE =
@@ -90,12 +91,13 @@ public class ShapedDraweeView extends ImageView {
         if (attrs != null) {
             TypedArray typedArray =
                     context.obtainStyledAttributes(attrs, R.styleable.ShapedDrawee, defStyle, 0);
-            shape = typedArray.getDrawable(R.styleable.ShapedDrawee_maskShape);
+            int shapeId = typedArray.getResourceId(R.styleable.ShapedDrawee_maskShape, -1);
+            shape = AppCompatResources.getDrawable(getContext(), shapeId);
+            if (shape == null) {
+                throw new IllegalArgumentException("maskShape must be specified in layout!");
+            }
             placeholder = typedArray.getDrawable(R.styleable.ShapedDrawee_placeholder);
             typedArray.recycle();
-        }
-        if (shape == null) {
-            throw new IllegalArgumentException("maskShape must be specified in layout!");
         }
 
         GenericDraweeHierarchy hierarchy =
@@ -118,7 +120,9 @@ public class ShapedDraweeView extends ImageView {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        createMaskCanvas(w, h, oldw, oldh);
+        if (!isInEditMode()) {
+            createMaskCanvas(w, h, oldw, oldh);
+        }
     }
 
     private void createMaskCanvas(int width, int height, int oldw, int oldh) {
@@ -148,45 +152,41 @@ public class ShapedDraweeView extends ImageView {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        if (!isInEditMode()) {
-            int saveCount = canvas.saveLayer(0.0f, 0.0f, getWidth(), getHeight(), null,
-                    Canvas.ALL_SAVE_FLAG);
-            try {
-                if (invalidated) {
-                    setImageDrawable(mDraweeHolder.getTopLevelDrawable());
-                    Drawable drawable = getDrawable();
-                    if (drawable != null) {
-                        invalidated = false;
-                        Matrix imageMatrix = getImageMatrix();
-                        if (imageMatrix == null) {// && mPaddingTop == 0 && mPaddingLeft == 0) {
-                            drawable.draw(drawableCanvas);
-                        } else {
-                            int drawableSaveCount = drawableCanvas.getSaveCount();
-                            drawableCanvas.save();
-                            drawableCanvas.concat(imageMatrix);
-                            drawable.draw(drawableCanvas);
-                            drawableCanvas.restoreToCount(drawableSaveCount);
-                        }
-
-                        drawablePaint.reset();
-                        drawablePaint.setFilterBitmap(false);
-                        drawablePaint.setXfermode(PORTER_DUFF_XFERMODE);
-                        drawableCanvas.drawBitmap(maskBitmap, 0.0f, 0.0f, drawablePaint);
+        int saveCount = canvas.saveLayer(0.0f, 0.0f, getWidth(), getHeight(), null,
+                Canvas.ALL_SAVE_FLAG);
+        try {
+            if (invalidated) {
+                setImageDrawable(mDraweeHolder.getTopLevelDrawable());
+                Drawable drawable = getDrawable();
+                if (drawable != null) {
+                    invalidated = false;
+                    Matrix imageMatrix = getImageMatrix();
+                    if (imageMatrix == null) {// && mPaddingTop == 0 && mPaddingLeft == 0) {
+                        drawable.draw(drawableCanvas);
+                    } else {
+                        int drawableSaveCount = drawableCanvas.getSaveCount();
+                        drawableCanvas.save();
+                        drawableCanvas.concat(imageMatrix);
+                        drawable.draw(drawableCanvas);
+                        drawableCanvas.restoreToCount(drawableSaveCount);
                     }
-                }
 
-                if (!invalidated) {
-                    drawablePaint.setXfermode(null);
-                    canvas.drawBitmap(drawableBitmap, 0.0f, 0.0f, drawablePaint);
+                    drawablePaint.reset();
+                    drawablePaint.setFilterBitmap(false);
+                    drawablePaint.setXfermode(PORTER_DUFF_XFERMODE);
+                    drawableCanvas.drawBitmap(maskBitmap, 0.0f, 0.0f, drawablePaint);
                 }
-            } catch (Exception e) {
-                String log = "Exception occured while drawing " + getId();
-                Log.e(TAG, log, e);
-            } finally {
-                canvas.restoreToCount(saveCount);
             }
-        } else {
-            super.onDraw(canvas);
+
+            if (!invalidated) {
+                drawablePaint.setXfermode(null);
+                canvas.drawBitmap(drawableBitmap, 0.0f, 0.0f, drawablePaint);
+            }
+        } catch (Exception e) {
+            String log = "Exception occured while drawing " + getId();
+            Log.e(TAG, log, e);
+        } finally {
+            canvas.restoreToCount(saveCount);
         }
     }
 

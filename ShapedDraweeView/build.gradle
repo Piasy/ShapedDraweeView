@@ -20,5 +20,6 @@ android {
 }
 
 dependencies {
+    compile "com.android.support:appcompat-v7:${rootProject.ext.androidSupportSdkVersion}"
     compile 'com.facebook.fresco:fresco:0.13.0'
 }

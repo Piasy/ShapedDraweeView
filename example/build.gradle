@@ -10,6 +10,8 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.releaseVersionCode
         versionName rootProject.ext.releaseVersionName
+
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
@@ -21,6 +23,5 @@ android {
 }
 
 dependencies {
-    compile "com.android.support:appcompat-v7:${rootProject.ext.androidSupportSdkVersion}"
     compile project(':ShapedDraweeView')
 }

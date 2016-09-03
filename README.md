@@ -4,7 +4,7 @@ Fresco custom view with mask shape.
 
 ## Demo
 
-![demo](art/shaped_drawee_view_demo.jpeg)
+![demo](art/shaped_drawee_view_demo.png)
 
 ## Usage
 
@@ -13,13 +13,11 @@ Fresco custom view with mask shape.
 ``` gradle
 allprojects {
     repositories {
-        maven {
-            url  "http://dl.bintray.com/piasy/maven"
-        }
+        jcenter()
     }
 }
 
-compile 'com.github.piasy:ShapedDraweeView:1.0.0'
+compile 'com.github.piasy:ShapedDraweeView:1.1.0'
 ```
 
 ### Layout
@@ -44,6 +42,30 @@ DraweeController controller = Fresco.newDraweeControllerBuilder()
         .build();
 shapedDraweeView.setController(controller);
 ```
+
+## SVG support
+
+import a SVG drawable as vector drawable via AndroidStudio.
+
+`app/build.gradle`
+
+``` gradle
+android {
+    // ...
+
+    defaultConfig {
+        // ...
+
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    // ...
+}
+```
+
+Then set the `app:maskShape` value as a vector drawable.
+
+Full example is inside [example module](tree/master/example)
 
 ## Credit
 

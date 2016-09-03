@@ -16,7 +16,60 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        ShapedDraweeView shapedDraweeView = (ShapedDraweeView) findViewById(R.id.mShapedDraweeView);
+        rightBlackSmall();
+
+        rightAlphaBig();
+
+        rightBlackBig();
+
+        leftAlphaBig();
+
+        showCenterSvg();
+    }
+
+    private void rightBlackSmall() {
+        ShapedDraweeView shapedDraweeView =
+                (ShapedDraweeView) findViewById(R.id.mShapedDraweeView1);
+        DraweeController controller = Fresco.newDraweeControllerBuilder()
+                .setUri(Uri.parse(
+                        "http://img0.bdstatic.com/img/image/shouye/xinshouye/chongwu16830.jpg"))
+                .build();
+        shapedDraweeView.setController(controller);
+    }
+
+    private void rightAlphaBig() {
+        ShapedDraweeView shapedDraweeView =
+                (ShapedDraweeView) findViewById(R.id.mShapedDraweeView2);
+        DraweeController controller = Fresco.newDraweeControllerBuilder()
+                .setUri(Uri.parse(
+                        "http://img0.bdstatic.com/img/image/shouye/xinshouye/chongwu16830.jpg"))
+                .build();
+        shapedDraweeView.setController(controller);
+    }
+
+    private void rightBlackBig() {
+        ShapedDraweeView shapedDraweeView =
+                (ShapedDraweeView) findViewById(R.id.mShapedDraweeView3);
+        DraweeController controller = Fresco.newDraweeControllerBuilder()
+                .setUri(Uri.parse(
+                        "http://img0.bdstatic.com/img/image/shouye/xinshouye/chongwu16830.jpg"))
+                .build();
+        shapedDraweeView.setController(controller);
+    }
+
+    private void leftAlphaBig() {
+        ShapedDraweeView shapedDraweeView =
+                (ShapedDraweeView) findViewById(R.id.mShapedDraweeView4);
+        DraweeController controller = Fresco.newDraweeControllerBuilder()
+                .setUri(Uri.parse(
+                        "http://img0.bdstatic.com/img/image/shouye/xinshouye/chongwu16830.jpg"))
+                .build();
+        shapedDraweeView.setController(controller);
+    }
+
+    private void showCenterSvg() {
+        final ShapedDraweeView shapedDraweeView =
+                (ShapedDraweeView) findViewById(R.id.mShapedDraweeView5);
         DraweeController controller = Fresco.newDraweeControllerBuilder()
                 .setUri(Uri.parse(
                         "http://img0.bdstatic.com/img/image/shouye/xinshouye/chongwu16830.jpg"))

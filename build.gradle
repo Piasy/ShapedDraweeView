@@ -37,8 +37,8 @@ ext {
     artifactName = 'ShapedDraweeView'
     artifactDescription = 'Fresco custom view with mask shape.'
     artifactLabels = ['Fresco', 'mask', 'shape']
-    releaseVersionCode = 1
-    releaseVersionName = '1.0.0'
+    releaseVersionCode = 2
+    releaseVersionName = '1.1.0'
 
     androidCompileSdkVersion = 24
     androidBuildToolsVersion = '24.0.1'

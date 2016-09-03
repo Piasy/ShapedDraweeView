@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<FrameLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -10,16 +10,54 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
+        android:background="#232329"
         tools:context=".MainActivity"
         >
 
     <piasy.github.com.fresco.draweeview.shaped.ShapedDraweeView
-            android:id="@+id/mShapedDraweeView"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="20dp"
+            android:id="@+id/mShapedDraweeView1"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="right"
             app:placeholder="@drawable/placeholder"
-            app:maskShape="@drawable/mask"
+            app:maskShape="@drawable/right_mask_black_small"
             />
 
-</RelativeLayout>
+    <piasy.github.com.fresco.draweeview.shaped.ShapedDraweeView
+            android:id="@+id/mShapedDraweeView2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="85dp"
+            android:layout_gravity="right"
+            app:placeholder="@drawable/placeholder"
+            app:maskShape="@drawable/right_mask_alpha_big"
+            />
+
+    <piasy.github.com.fresco.draweeview.shaped.ShapedDraweeView
+            android:id="@+id/mShapedDraweeView4"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="255dp"
+            app:placeholder="@drawable/placeholder"
+            app:maskShape="@drawable/left_mask_alpha_big"
+            />
+
+    <piasy.github.com.fresco.draweeview.shaped.ShapedDraweeView
+            android:id="@+id/mShapedDraweeView5"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="340dp"
+            android:layout_gravity="center_horizontal"
+            app:placeholder="@drawable/placeholder"
+            app:maskShape="@drawable/ic_android"
+            />
+    <piasy.github.com.fresco.draweeview.shaped.ShapedDraweeView
+            android:id="@+id/mShapedDraweeView3"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="170dp"
+            android:layout_gravity="right"
+            app:placeholder="@drawable/placeholder"
+            app:maskShape="@drawable/right_mask_black_big"
+            />
+</FrameLayout>
