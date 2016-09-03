@@ -17,7 +17,7 @@ allprojects {
     }
 }
 
-compile 'com.github.piasy:ShapedDraweeView:1.2.0'
+compile 'com.github.piasy:ShapedDraweeView:1.2.1'
 ```
 
 ### Layout
@@ -45,7 +45,9 @@ shapedDraweeView.setController(controller);
 
 ## SVG support
 
-import a SVG drawable as vector drawable via AndroidStudio.
+At least use `appcompat:23.2.0`.
+
+Import a SVG drawable as vector drawable via AndroidStudio.
 
 `app/build.gradle`
 

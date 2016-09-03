@@ -38,7 +38,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
-import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -92,7 +91,11 @@ public class ShapedDraweeView extends AppCompatImageView {
             TypedArray typedArray =
                     context.obtainStyledAttributes(attrs, R.styleable.ShapedDrawee, defStyle, 0);
             int shapeId = typedArray.getResourceId(R.styleable.ShapedDrawee_maskShape, -1);
-            shape = AppCompatResources.getDrawable(getContext(), shapeId);
+            // AppCompatResources is added in 24.2.0, for those don't use up to date support
+            // library, we could not use this class :(
+            // shape = AppCompatResources.getDrawable(getContext(), shapeId);
+            setImageResource(shapeId);
+            shape = getDrawable();
             if (shape == null) {
                 throw new IllegalArgumentException("maskShape must be specified in layout!");
             }
