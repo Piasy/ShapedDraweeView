@@ -17,13 +17,13 @@ allprojects {
     }
 }
 
-compile 'com.github.piasy:ShapedDraweeView:1.1.0'
+compile 'com.github.piasy:ShapedDraweeView:1.2.0'
 ```
 
 ### Layout
 
 ``` xml
-<piasy.github.com.fresco.draweeview.shaped.ShapedDraweeView
+<com.github.piasy.fresco.draweeview.shaped.ShapedDraweeView
         android:id="@+id/mShapedDraweeView"
         android:layout_width="100dp"
         android:layout_height="100dp"

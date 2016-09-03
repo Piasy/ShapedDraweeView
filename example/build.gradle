@@ -5,7 +5,7 @@ android {
     buildToolsVersion rootProject.ext.androidBuildToolsVersion
 
     defaultConfig {
-        applicationId "piasy.github.com.fresco.draweeview.shaped.example"
+        applicationId "com.github.piasy.fresco.draweeview.shaped.example"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.releaseVersionCode

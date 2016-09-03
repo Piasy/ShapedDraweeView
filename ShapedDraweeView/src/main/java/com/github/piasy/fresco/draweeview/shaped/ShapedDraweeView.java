@@ -26,7 +26,7 @@
  *  2. Fresco custom view is from: http://fresco-cn.org/docs/writing-custom-views.html
  */
 
-package piasy.github.com.fresco.draweeview.shaped;
+package com.github.piasy.fresco.draweeview.shaped;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -152,8 +152,8 @@ public class ShapedDraweeView extends AppCompatImageView {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        int saveCount = canvas.saveLayer(0.0f, 0.0f, getWidth(), getHeight(), null,
-                Canvas.ALL_SAVE_FLAG);
+        int saveCount =
+                canvas.saveLayer(0.0f, 0.0f, getWidth(), getHeight(), null, Canvas.ALL_SAVE_FLAG);
         try {
             if (invalidated) {
                 setImageDrawable(mDraweeHolder.getTopLevelDrawable());

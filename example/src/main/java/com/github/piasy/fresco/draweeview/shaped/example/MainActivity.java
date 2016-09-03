@@ -1,11 +1,11 @@
-package piasy.github.com.fresco.draweeview.shaped.example;
+package com.github.piasy.fresco.draweeview.shaped.example;
 
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
-import piasy.github.com.fresco.draweeview.shaped.ShapedDraweeView;
+import com.github.piasy.fresco.draweeview.shaped.ShapedDraweeView;
 
 public class MainActivity extends AppCompatActivity {
 
