@@ -69,6 +69,10 @@ Then set the `app:maskShape` value as a vector drawable.
 
 Full example is inside [example module](tree/master/example)
 
+## Note
+
+When you see a NPE from ShapedDraweeView, it's usually because your view is not correctly initialized, e.g. zero width/height.
+
 ## Credit
 
 1. Shape mask is from: https://github.com/siyamed/android-shape-imageview
